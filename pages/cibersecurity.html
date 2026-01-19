@@ -1,25 +1,43 @@
+<div id="lista-articulos" class="grid-container">
+    <p>Cargando artículos...</p>
+</div>
+
 <script>
-    // ciberseguridad.html
+    // Usamos la ruta absoluta (con / al inicio) para ir a la raíz del sitio
+    fetch('/posts.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // DEBUG: Ver en consola qué estamos recibiendo
+            console.log("Datos recibidos:", data);
 
-fetch('../posts.json')
-    .then(response => response.json())
-    .then(data => {
-        // FILTRADO AUTOMÁTICO
-        const postsSeguridad = data.filter(post => post.category === 'cibersecurity');
-        
-        const container = document.getElementById('lista-articulos');
-        
-        if (postsSeguridad.length === 0) {
-            container.innerHTML = "<p>No hay artículos en esta categoría aún.</p>";
-            return;
-        }
+            // FILTRADO: Usamos 'cibersecurity' porque así está en tu JSON
+            const postsSeguridad = data.filter(post => post.category === 'cibersecurity');
+            
+            const container = document.getElementById('lista-articulos');
+            
+            if (postsSeguridad.length === 0) {
+                container.innerHTML = "<p>No hay artículos en la categoría 'cibersecurity'.</p>";
+                return;
+            }
 
-        container.innerHTML = postsSeguridad.map(post => `
-            <div class="card">
-                <h3>${post.title}</h3>
-                <span class="badge">${post.category}</span> <p>Fecha: ${post.date}</p>
-                <a href="articulo.html?id=${post.id}">Leer artículo</a>
-            </div>
-        `).join('');
-    });
+            container.innerHTML = postsSeguridad.map(post => `
+                <div class="card">
+                    <h3>${post.title}</h3>
+                    <span class="badge">${post.category}</span> 
+                    <p>Fecha: ${post.date}</p>
+                    
+                    <a href="/articulo.html?id=${post.id}">Leer artículo</a>
+                </div>
+            `).join('');
+        })
+        .catch(error => {
+            console.error("Error crítico:", error);
+            document.getElementById('lista-articulos').innerHTML = 
+                `<p style="color:red">Error cargando los posts: ${error.message}</p>`;
+        });
 </script>
