@@ -1,73 +1,85 @@
 const fs = require('fs');
 const path = require('path');
 
-// Configuración
 const contentDir = path.join(__dirname, 'content');
 const outputFile = path.join(__dirname, 'posts.json');
 
-// Función para obtener fecha de modificación
+// Función auxiliar para obtener fecha
 const getFileDate = (filePath) => {
     const stats = fs.statSync(filePath);
     return stats.mtime.toISOString().split('T')[0];
 };
 
-// Función principal
-const generarIndice = () => {
-    // 1. Verificar si existe la carpeta content
-    if (!fs.existsSync(contentDir)) {
-        console.error("❌ Error: No se encontró la carpeta 'content'.");
-        process.exit(1);
-    }
+// Función recursiva para escanear carpetas
+const getAllFiles = (dirPath, arrayOfFiles) => {
+    const files = fs.readdirSync(dirPath);
 
-    let posts = [];
-    
-    // 2. Leer elementos dentro de /content
-    const items = fs.readdirSync(contentDir, { withFileTypes: true });
-
-    items.forEach(item => {
-        // CASO A: Es una CARPETA (ej: /content/ciberseguridad)
-        if (item.isDirectory()) {
-            const category = item.name;
-            const categoryPath = path.join(contentDir, category);
-            
-            // Leer archivos dentro de esa categoría
-            const files = fs.readdirSync(categoryPath).filter(f => f.endsWith('.md'));
-
-            files.forEach(file => {
-                const title = file.replace('.md', '').replace(/-/g, ' ');
-                // El ID ahora incluye la categoría: "ciberseguridad/mi-articulo"
-                const id = `${category}/${file.replace('.md', '')}`;
-
-                posts.push({
-                    id: id,
-                    title: title.charAt(0).toUpperCase() + title.slice(1),
-                    category: category, // ¡Aquí está tu nueva propiedad!
-                    date: getFileDate(path.join(categoryPath, file)),
-                    fileName: file
-                });
-            });
-
-        // CASO B: Es un ARCHIVO suelto en la raíz (ej: /content/hola.md)
-        } else if (item.isFile() && item.name.endsWith('.md')) {
-            const title = item.name.replace('.md', '').replace(/-/g, ' ');
-            
-            posts.push({
-                id: item.name.replace('.md', ''),
-                title: title.charAt(0).toUpperCase() + title.slice(1),
-                category: 'general', // Categoría por defecto
-                date: getFileDate(path.join(contentDir, item.name)),
-                fileName: item.name
-            });
+    files.forEach((file) => {
+        const fullPath = path.join(dirPath, file);
+        
+        if (fs.statSync(fullPath).isDirectory()) {
+            getAllFiles(fullPath, arrayOfFiles);
+        } else {
+            if (file.endsWith('.md')) {
+                arrayOfFiles.push(fullPath);
+            }
         }
     });
 
-    // 3. Ordenar por fecha (más reciente primero)
+    return arrayOfFiles;
+}
+
+const generarIndice = () => {
+    if (!fs.existsSync(contentDir)) {
+        console.error("❌ No existe la carpeta content");
+        return;
+    }
+
+    let posts = [];
+    const allFiles = getAllFiles(contentDir, []);
+
+    allFiles.forEach(filePath => {
+        // Obtenemos la ruta relativa para analizar las carpetas
+        // Ejemplo: content/cibersecurity/proyectos/mi-nota.md
+        const relativePath = path.relative(contentDir, filePath);
+        const parts = relativePath.split(path.sep);
+
+        // Lógica de clasificación
+        let category = 'general';
+        let subcategory = 'general';
+
+        if (parts.length >= 2) {
+            category = parts[0]; // "cibersecurity"
+            
+            // Si hay subcarpeta, la usamos como subcategoría
+            if (parts.length >= 3) {
+                subcategory = parts[1]; // "proyectos", "writeups", etc.
+            }
+        }
+
+        const fileName = path.basename(filePath);
+        const title = fileName.replace('.md', '').replace(/-/g, ' ');
+        
+        // Creamos el ID usando la ruta relativa pero con slashes web (/)
+        // Esto es vital para que funcione en Windows y Linux igual
+        const id = relativePath.replace('.md', '').replace(/\\/g, '/');
+
+        posts.push({
+            id: id,
+            title: title.charAt(0).toUpperCase() + title.slice(1),
+            category: category,      // Categoría Principal
+            subcategory: subcategory, // Nueva propiedad: Tipo de contenido
+            date: getFileDate(filePath),
+            fileName: fileName
+        });
+    });
+
+    // Ordenar por fecha
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    // 4. Guardar
     fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
-    console.log(`✅ Índice actualizado: ${posts.length} artículos detectados.`);
-    console.log("📂 Categorías encontradas:", [...new Set(posts.map(p => p.category))].join(", "));
+    console.log(`✅ Índice generado con ${posts.length} artículos.`);
+    console.log(`📂 Subcategorías detectadas: ${[...new Set(posts.map(p => p.subcategory))].join(', ')}`);
 };
 
 generarIndice();
