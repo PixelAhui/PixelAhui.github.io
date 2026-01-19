@@ -10,15 +10,14 @@ const getFileDate = (filePath) => {
     return stats.mtime.toISOString().split('T')[0];
 };
 
-// Función recursiva para escanear carpetas
+// Función recursiva para escanear carpetas (¡ESTA ES LA CLAVE!)
 const getAllFiles = (dirPath, arrayOfFiles) => {
     const files = fs.readdirSync(dirPath);
 
     files.forEach((file) => {
         const fullPath = path.join(dirPath, file);
-        
         if (fs.statSync(fullPath).isDirectory()) {
-            getAllFiles(fullPath, arrayOfFiles);
+            getAllFiles(fullPath, arrayOfFiles); // Se mete en subcarpetas
         } else {
             if (file.endsWith('.md')) {
                 arrayOfFiles.push(fullPath);
@@ -32,54 +31,41 @@ const getAllFiles = (dirPath, arrayOfFiles) => {
 const generarIndice = () => {
     if (!fs.existsSync(contentDir)) {
         console.error("❌ No existe la carpeta content");
-        return;
+        process.exit(1);
     }
 
     let posts = [];
     const allFiles = getAllFiles(contentDir, []);
 
     allFiles.forEach(filePath => {
-        // Obtenemos la ruta relativa para analizar las carpetas
-        // Ejemplo: content/cibersecurity/proyectos/mi-nota.md
-        const relativePath = path.relative(contentDir, filePath);
-        const parts = relativePath.split(path.sep);
-
-        // Lógica de clasificación
+        // Normalizamos rutas para que funcionen en Linux/GitHub
+        const relativePath = path.relative(contentDir, filePath).split(path.sep).join('/');
+        const parts = relativePath.split('/');
+        
+        // Detección de Categoría y Subcategoría
         let category = 'general';
         let subcategory = 'general';
 
-        if (parts.length >= 2) {
-            category = parts[0]; // "cibersecurity"
-            
-            // Si hay subcarpeta, la usamos como subcategoría
-            if (parts.length >= 3) {
-                subcategory = parts[1]; // "proyectos", "writeups", etc.
-            }
-        }
+        if (parts.length >= 2) category = parts[0]; 
+        if (parts.length >= 3) subcategory = parts[1].toLowerCase(); // Detecta 'writeups'
 
         const fileName = path.basename(filePath);
         const title = fileName.replace('.md', '').replace(/-/g, ' ');
-        
-        // Creamos el ID usando la ruta relativa pero con slashes web (/)
-        // Esto es vital para que funcione en Windows y Linux igual
-        const id = relativePath.replace('.md', '').replace(/\\/g, '/');
+        const id = relativePath.replace('.md', '');
 
         posts.push({
             id: id,
             title: title.charAt(0).toUpperCase() + title.slice(1),
-            category: category,      // Categoría Principal
-            subcategory: subcategory, // Nueva propiedad: Tipo de contenido
+            category: category,
+            subcategory: subcategory, // ¡El dato que te falta!
             date: getFileDate(filePath),
             fileName: fileName
         });
     });
 
-    // Ordenar por fecha
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
     fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
-    console.log(`✅ Índice generado con ${posts.length} artículos.`);
-    console.log(`📂 Subcategorías detectadas: ${[...new Set(posts.map(p => p.subcategory))].join(', ')}`);
+    console.log(`✅ Índice generado: ${posts.length} artículos.`);
 };
 
 generarIndice();
