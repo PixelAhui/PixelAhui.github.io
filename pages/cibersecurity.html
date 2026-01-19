@@ -1,11 +1,11 @@
 <script>
     // ciberseguridad.html
 
-fetch('./posts.json')
+fetch('../posts.json')
     .then(response => response.json())
     .then(data => {
         // FILTRADO AUTOMÁTICO
-        const postsSeguridad = data.filter(post => post.category === 'ciberseguridad');
+        const postsSeguridad = data.filter(post => post.category === 'cibersecurity');
         
         const container = document.getElementById('lista-articulos');
         
