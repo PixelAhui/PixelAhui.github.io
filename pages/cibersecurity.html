@@ -1,0 +1,25 @@
+<script>
+    // ciberseguridad.html
+
+fetch('./posts.json')
+    .then(response => response.json())
+    .then(data => {
+        // FILTRADO AUTOMÁTICO
+        const postsSeguridad = data.filter(post => post.category === 'ciberseguridad');
+        
+        const container = document.getElementById('lista-articulos');
+        
+        if (postsSeguridad.length === 0) {
+            container.innerHTML = "<p>No hay artículos en esta categoría aún.</p>";
+            return;
+        }
+
+        container.innerHTML = postsSeguridad.map(post => `
+            <div class="card">
+                <h3>${post.title}</h3>
+                <span class="badge">${post.category}</span> <p>Fecha: ${post.date}</p>
+                <a href="articulo.html?id=${post.id}">Leer artículo</a>
+            </div>
+        `).join('');
+    });
+</script>
