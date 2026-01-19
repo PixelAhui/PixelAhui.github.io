@@ -43,8 +43,8 @@ const generarIndice = () => {
         const parts = relativePath.split('/');
         
         // Detección de Categoría y Subcategoría
-        let category = 'general';
-        let subcategory = 'general';
+        let category = 'cibersecurity';
+        let subcategory = 'writeups';
 
         if (parts.length >= 2) category = parts[0]; 
         if (parts.length >= 3) subcategory = parts[1].toLowerCase(); // Detecta 'writeups'
