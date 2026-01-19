@@ -1,43 +1,222 @@
-<div id="lista-articulos" class="grid-container">
-    <p>Cargando artículos...</p>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciberseguridad | Pixel Ahui</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
 
-<script>
-    // Usamos la ruta absoluta (con / al inicio) para ir a la raíz del sitio
-    fetch('/posts.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // DEBUG: Ver en consola qué estamos recibiendo
-            console.log("Datos recibidos:", data);
+    <nav class="navbar">
+        <div class="logo">Pixel Ahui</div>
+        <div class="nav-links">
+            <a href="../index.html">Proyectos</a>
+            <a href="#" class="active">Ciberseguridad</a>
+            <a href="#">Computación</a>
+            <a href="#">GameDev</a>
+            <a href="#">Reflexiones</a>
+        </div>
+    </nav>
 
-            // FILTRADO: Usamos 'cibersecurity' porque así está en tu JSON
-            const postsSeguridad = data.filter(post => post.category === 'cibersecurity');
-            
-            const container = document.getElementById('lista-articulos');
-            
-            if (postsSeguridad.length === 0) {
-                container.innerHTML = "<p>No hay artículos en la categoría 'cibersecurity'.</p>";
-                return;
-            }
+    <main class="main-container">
+        
+        <section class="hero-section">
+            <div class="hero-icon">
+                <img src="../images/pixel-lock.png" alt="Candado Ciberseguridad">
+            </div>
+            <div class="hero-content">
+                <h2>Pixel Ahui</h2>
+                <p>
+                    Proyecto de divulgación sobre hacking ético, teoría computacional e ingeniería. 
+                    Navegando las aguas turbulentas de la computación para principiantes y expertos.
+                </p>
+                <p class="welcome-text">BIENVENIDO A PIXEL AHUI</p>
+            </div>
+        </section>
 
-            container.innerHTML = postsSeguridad.map(post => `
-                <div class="card">
-                    <h3>${post.title}</h3>
-                    <span class="badge">${post.category}</span> 
-                    <p>Fecha: ${post.date}</p>
-                    
-                    <a href="/article.html?id=${post.id}">Leer artículo</a>
-                </div>
-            `).join('');
-        })
-        .catch(error => {
-            console.error("Error crítico:", error);
-            document.getElementById('lista-articulos').innerHTML = 
-                `<p style="color:red">Error cargando los posts: ${error.message}</p>`;
+        <h2 class="section-title">Proyectos Relacionados</h2>
+        <div id="container-proyectos" class="cards-grid">
+            </div>
+
+        <h2 class="section-title">Writeups</h2>
+        <div id="container-writeups" class="cards-grid">
+            <p style="color:#aaa">Cargando writeups...</p>
+        </div>
+
+        <h2 class="section-title">Reflexiones sobre Ciberseguridad</h2>
+        <div id="container-reflexiones" class="cards-grid">
+             </div>
+
+    </main>
+
+    <footer>
+        <p>Pixel Ahui & jokealex 2025</p>
+    </footer>
+
+    <script src="">
+                document.addEventListener('DOMContentLoaded', () => {
+            fetch('/posts.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 1. Filtrar solo los de ciberseguridad
+                    const posts = data.filter(p => p.category === 'cibersecurity');
+
+                    // 2. Seleccionar el contenedor donde queremos ponerlos
+                    // Por ahora, pondremos todo en 'Writeups' hasta que clasifiquemos mejor
+                    const container = document.getElementById('container-writeups');
+
+                    if (posts.length === 0) {
+                        container.innerHTML = "<p>No hay artículos aún.</p>";
+                        return;
+                    }
+
+                    // 3. Generar el HTML de las tarjetas
+                    container.innerHTML = posts.map(post => {
+                        // Truco: Generar una descripción falsa si no existe
+                        const descripcion = "Este es un artículo técnico sobre " + post.title + ". Haz clic para leer más detalles.";
+                        
+                        return `
+                        <article class="card">
+                            <div class="card-content">
+                                <span style="font-size:0.8rem; opacity:0.7;">${post.date}</span>
+                                <h3>${post.title}</h3>
+                                <p>${descripcion}</p>
+                                <a href="/articulo.html?id=${post.id}" class="btn-saber-mas">Saber Más</a>
+                            </div>
+                            
+                            <div class="card-icon">
+                                <img src="../images/pixel-lock-icon.png" alt="icon"> 
+                            </div>
+                        </article>
+                        `;
+                    }).join('');
+                })
+                .catch(err => console.error("Error:", err));
         });
-</script>
+    </script> 
+
+    <style>
+        :root {
+    /* Paleta basada en tu Figma */
+    --bg-dark: #12141D;       /* Fondo muy oscuro */
+    --card-bg: #7B5EA7;       /* El morado de las tarjetas */
+    --text-white: #FFFFFF;
+    --text-cyan: #00F0FF;     /* Color para títulos neón */
+    --font-pixel: 'VT323', monospace; /* Fuente retro */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-pixel); /* O la fuente que prefieras */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    background: #1A1C29;
+    align-items: center;
+}
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1.1rem;
+}
+.nav-links a.active { color: var(--text-white); text-decoration: underline; }
+
+/* Contenedor Principal */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Hero Section (Caja de bienvenida) */
+.hero-section {
+    display: flex;
+    background-color: var(--card-bg); /* Mismo morado */
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    align-items: center;
+    gap: 2rem;
+}
+.hero-icon img { width: 120px; image-rendering: pixelated; }
+.hero-content h2 { margin-top: 0; font-size: 1.5rem; }
+
+/* Títulos de Sección */
+.section-title {
+    color: var(--text-cyan);
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5); /* Efecto neón suave */
+}
+
+/* Tarjetas (Cards) - Estilo Horizontal */
+.cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between; /* Texto izq, Imagen der */
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateX(5px); /* Pequeña animación al pasar el mouse */
+}
+
+.card-content {
+    flex: 1; /* Ocupa el espacio disponible */
+    padding-right: 20px;
+}
+
+.card-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.btn-saber-mas {
+    color: var(--text-cyan);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    background: #000; /* Círculo negro detrás del ícono */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-icon img {
+    width: 50px;
+}
+    </style>
+
+</body>
+</html>
