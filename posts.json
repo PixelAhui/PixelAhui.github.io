@@ -4,7 +4,7 @@
     "title": "Welcome",
     "category": "cibersecurity",
     "subcategory": "writeups",
-    "date": "2026-01-19",
+    "date": "2026-01-20",
     "fileName": "welcome.md"
   },
   {
@@ -12,7 +12,31 @@
     "title": "InstallKali",
     "category": "cibersecurity",
     "subcategory": "writeups",
-    "date": "2026-01-19",
+    "date": "2026-01-20",
     "fileName": "installKali.md"
+  },
+  {
+    "id": "projects/finished/terminado",
+    "title": "Terminado",
+    "category": "projects",
+    "subcategory": "finished",
+    "date": "2026-01-20",
+    "fileName": "terminado.md"
+  },
+  {
+    "id": "projects/progress/progreso",
+    "title": "Progreso",
+    "category": "projects",
+    "subcategory": "progress",
+    "date": "2026-01-20",
+    "fileName": "progreso.md"
+  },
+  {
+    "id": "projects/prominent/destacado",
+    "title": "Destacado",
+    "category": "projects",
+    "subcategory": "prominent",
+    "date": "2026-01-20",
+    "fileName": "destacado.md"
   }
 ]
