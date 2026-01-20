@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const descripcion = `Descubre mas sobre este proyecto ${post.title}.`;
                     
                     return `
-                    <article class="card">
+                    <article class="seccion">
                         <div class="card-content">
                             <span style="font-size:0.8rem; opacity:0.7; color: #00F0FF;">${post.date}</span>
                             <h3>${post.title}</h3>
