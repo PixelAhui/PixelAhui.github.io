@@ -3,7 +3,16 @@
     "id": "cibersecurity/welcome",
     "title": "Welcome",
     "category": "cibersecurity",
+    "subcategory": "writeups",
     "date": "2026-01-19",
     "fileName": "welcome.md"
+  },
+  {
+    "id": "cibersecurity/writeups/installKali",
+    "title": "InstallKali",
+    "category": "cibersecurity",
+    "subcategory": "writeups",
+    "date": "2026-01-19",
+    "fileName": "installKali.md"
   }
 ]
