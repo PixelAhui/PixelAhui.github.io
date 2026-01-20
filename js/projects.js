@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // Inyectar en cada sección
-            renderCards(proyectos, 'container-progress', 'Próximamente más proyectos...');
-            renderCards(writeups, 'container-prominent', 'Proximamente mas proyectos...');
-            renderCards(reflexiones, 'container-finished', 'Proximamente mas proyectos...');
+            renderCards(progress, 'container-progress', 'Próximamente más proyectos...');
+            renderCards(prominent, 'container-prominent', 'Proximamente mas proyectos...');
+            renderCards(finished, 'container-finished', 'Proximamente mas proyectos...');
 
         })
         .catch(err => console.error("Error cargando blog:", err));
