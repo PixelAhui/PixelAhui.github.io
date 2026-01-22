@@ -101,12 +101,14 @@ main {
 
     display: block;
     padding: 40px 20px 80px;
+    margin: 20px 20px 80px;
 
 }
 
 .seccion {
 
     background: #7D5BA6;
+    font-family: "Inter";
     color: #FFF;
 
 }
@@ -116,6 +118,26 @@ main {
     height: 175px;
     width: 170px;
     border-radius: 50%;
+
+}
+
+.subtitle {
+    font-family: "Pixelify Sans";
+    color: #00F0FF;
+    font-size: 32px;
+}
+
+span {
+    font-size:0.8rem;  
+    color: #00F0FF;
+    font-family: "Pixelify Sans";
+}
+
+.btn-saber-mas {
+
+    font-family: "Pixelify Sans";
+    color: #00F0FF;
+    float: right;
 
 }
 

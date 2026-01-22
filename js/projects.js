@@ -24,15 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     const descripcion = `Descubre mas sobre este proyecto ${post.title}.`;
                     
                     return `
-                    <article class="seccion">
-                        <div class="card-content">
-                            <span style="font-size:0.8rem; opacity:0.7; color: #00F0FF;">${post.date}</span>
+                    <article class="secciones">
+                        <div class="seccion">
                             <h3>${post.title}</h3>
                             <p>${descripcion}</p>
+                            <div class="card-icon">
+                             <img src="../images/PixelAhui-EngineeringComputer.png" alt="icon">
+                            </div><br/>
+                            <span>${post.date}</span>
                             <a href="/article.html?id=${post.id}" class="btn-saber-mas">Saber Más</a>
-                        </div>
-                        <div class="card-icon">
-                             <img src="../images/PixelAhui-EngineeringComputer" alt="icon">
                         </div>
                     </article>
                     `;
