@@ -9,7 +9,7 @@ const outputFile = path.join(__dirname, 'posts.json');
 // La "clave" (key) debe ser el ID del archivo (la ruta sin .md)
 const catalogo = {
     // EJEMPLO 1: Para el archivo en content/cibersecurity/writeups/installKali.md
-    'projects/progress/terminado': {
+    'projects/finished/terminado': {
         image: 'kali-logo.png',
         description: 'Aprende a instalar Kali Linux desde cero en una máquina virtual.'
     }

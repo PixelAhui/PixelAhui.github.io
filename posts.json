@@ -1,27 +1,13 @@
 [
   {
-    "id": "cibersecurity/welcome",
-    "title": "Welcome",
-    "category": "cibersecurity",
-    "subcategory": "writeups",
-    "date": "2026-01-20",
-    "fileName": "welcome.md"
-  },
-  {
-    "id": "cibersecurity/writeups/installKali",
-    "title": "InstallKali",
-    "category": "cibersecurity",
-    "subcategory": "writeups",
-    "date": "2026-01-20",
-    "fileName": "installKali.md"
-  },
-  {
     "id": "projects/finished/terminado",
     "title": "Terminado",
     "category": "projects",
     "subcategory": "finished",
-    "date": "2026-01-20",
-    "fileName": "terminado.md"
+    "date": "2026-01-22",
+    "fileName": "terminado.md",
+    "description": "Aprende a instalar Kali Linux desde cero en una máquina virtual.",
+    "image": "kali-logo.png"
   },
   {
     "id": "projects/progress/progreso",
@@ -29,7 +15,9 @@
     "category": "projects",
     "subcategory": "progress",
     "date": "2026-01-20",
-    "fileName": "progreso.md"
+    "fileName": "progreso.md",
+    "description": "Lectura sobre progreso",
+    "image": null
   },
   {
     "id": "projects/prominent/destacado",
@@ -37,6 +25,28 @@
     "category": "projects",
     "subcategory": "prominent",
     "date": "2026-01-20",
-    "fileName": "destacado.md"
+    "fileName": "destacado.md",
+    "description": "Lectura sobre destacado",
+    "image": null
+  },
+  {
+    "id": "cibersecurity/welcome",
+    "title": "Welcome",
+    "category": "cibersecurity",
+    "subcategory": "general",
+    "date": "2026-01-19",
+    "fileName": "welcome.md",
+    "description": "Lectura sobre welcome",
+    "image": null
+  },
+  {
+    "id": "cibersecurity/writeups/installKali",
+    "title": "InstallKali",
+    "category": "cibersecurity",
+    "subcategory": "writeups",
+    "date": "2026-01-19",
+    "fileName": "installKali.md",
+    "description": "Lectura sobre installKali",
+    "image": null
   }
 ]
