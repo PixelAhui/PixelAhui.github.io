@@ -1,19 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/posts.json')
+    // 1. TRUCO ANTI-CACHÉ: Agregamos ?v=... para obligar a leer el JSON nuevo
+    fetch('/posts.json?v=' + new Date().getTime())
         .then(response => response.json())
         .then(data => {
-            // Filtrar SOLO cosas de ciberseguridad
             const ciberData = data.filter(p => p.category === 'projects');
 
-            // Sub-filtrado por tipo (coincide con el nombre de tus carpetas)
             const progress = ciberData.filter(p => p.subcategory === 'progress');
             const prominent = ciberData.filter(p => p.subcategory === 'prominent');
             const finished = ciberData.filter(p => p.subcategory === 'finished');
 
-            // Función reutilizable para renderizar tarjetas
             const renderCards = (items, containerId, emptyMsg) => {
                 const container = document.getElementById(containerId);
-                if (!container) return; // Seguridad por si falta el div
+                if (!container) return;
 
                 if (items.length === 0) {
                     container.innerHTML = `<p style="color: #aaa; font-style: italic;">${emptyMsg}</p>`;
@@ -21,16 +19,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 container.innerHTML = items.map(post => {
-                    const descripcion = `Descubre mas sobre este proyecto ${post.title}.`;
+                    // 2. LÓGICA DINÁMICA DE DESCRIPCIÓN
+                    // Si el JSON trae descripción, úsala. Si no, usa el texto genérico.
+                    const descripcionFinal = post.description || `Descubre más sobre este proyecto ${post.title}.`;
+
+                    // 3. LÓGICA DINÁMICA DE IMAGEN
+                    // Si el JSON trae imagen, úsala. Si no, usa la default.
+                    const imgName = post.image ? post.image : 'PixelAhui-EngineeringComputer.png';
                     
+                    // Usamos ruta absoluta /images/ para evitar errores de carpetas
+                    const imagePath = imgName.startsWith('http') ? imgName : `/images/${imgName}`;
+
                     return `
                     <article class="secciones">
                         <div class="seccion">
                             <h3>${post.title}</h3>
-                            <p>${descripcion}</p>
+                            
+                            <p>${descripcionFinal}</p>
+                            
                             <div class="card-icon">
-                             <img src="../images/PixelAhui-EngineeringComputer.png" alt="icon">
+                                <img src="${imagePath}" alt="${post.title}" onerror="this.src='/images/PixelAhui-EngineeringComputer.png'">
                             </div><br/>
+                            
                             <span>${post.date}</span>
                             <a href="/article.html?id=${post.id}" class="btn-saber-mas">Saber Más</a>
                         </div>
@@ -39,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).join('');
             };
 
-            // Inyectar en cada sección
             renderCards(progress, 'container-progress', 'Próximamente más proyectos...');
             renderCards(prominent, 'container-prominent', 'Proximamente mas proyectos...');
             renderCards(finished, 'container-finished', 'Proximamente mas proyectos...');
