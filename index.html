@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Pixel Ahui</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
         <button class="hamburger" aria-label="Abrir Menu">
             ☰
         </button>
-        <nav>
+        <nav data-aos="fade-up">
             <ul class="nav">
                 <li><a href="#">Pixel Ahui</a></li>
                 <li><a href="pages/projects.html">Proyectos</a></li>
@@ -25,10 +26,10 @@
     </header>
 
     <main>
-        <div class="Logo">
+        <div data-aos="fade-down" class="Logo">
             <img src="images/PixelAhui-Index.png" alt="Img-PixelAhui" title="PixelAhui">
         </div>
-        <div class="Bienvenue">
+        <div data-aos="fade-down" class="Bienvenue">
             <p>Pixel Ahui, es un pequeño proyecto de divulgación sobre diversos temas de computación desde
                 teoría computacional, ingeniería, desarrollo de software y videojuegos, hacking ético, así como
                 opiniones propias sobre diversos temas de computación e ingeniería.<br/><br/>
@@ -41,43 +42,51 @@
         </div>
     </main>
 
-    <div class="secciones">
+    <div data-aos="fade-down" class="secciones">
         <div class="seccion">
             <img src="images/PixelAhui-Projects.png" alt="Img-Projects" title="Projects">
             <br>
-            <a href="#" class="enlace">Proyectos</a>
+            <a href="pages/projects.html" class="enlace">Proyectos</a>
         </div>
 
         <div class="seccion">
             <img src="images/PixelAhui-CiberSecurity.png" alt="Img-Cibersecurity" title="Cibersecurity">
             <br>
-            <a href="#" class="enlace">Ciberseguridad</a>
+            <a href="pages/cibersecurity.html" class="enlace">Ciberseguridad</a>
         </div>
 
         <div class="seccion">
             <img src="images/PixelAhui-GameDev.png" alt="Img-GameDev" title="GameDev">
             <br>
-            <a href="#" class="enlace">GameDev</a>
+            <a href="pages/gamedev.html" class="enlace">GameDev</a>
         </div>
 
         <div class="seccion">
             <img src="images/PixelAhui-EngineeringComputer.png" alt="Img-EngineeringComputer" title="EngineeringComputer">
             <br>
-            <a href="#" class="enlace">Computación e Ingeniería</a>
+            <a href="pages/engineeringcomputer.html" class="enlace">Computación e Ingeniería</a>
         </div>
 
         <div class="seccion">
             <img src="images/PixelAhui-Thoughts.png" alt="Img-Thoughts" title="Thoughts">
             <br>
-            <a href="#" class="enlace">Reflexiones</a>
+            <a href="pages/thoughts.html" class="enlace">Reflexiones</a>
         </div>
     </div>
 
-    <footer>
+    <footer data-aos="fade-down">
         <p>Pixel Ahui & jokealex 2025</p>
     </footer>
 
     <script src="js/menuresponsive.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, 
+            once: true    
+        });
+    </script>
+
 
 </body>
 </html>

@@ -25,7 +25,6 @@ nav {
 
     margin: 0;
     padding: 10px;
-
     list-style: none;
     display: inline-block;
     font-family: "Space Mono";
@@ -66,11 +65,15 @@ main {
 
 }
 
+.logo {
+    border-radius: 50%;
+}
+
 .logo img {
 
     height: 265px;
     width: 260px;
-    border-radius: 200px;
+    border-radius: 50%;
 
 }
 
@@ -141,6 +144,21 @@ span {
 
 }
 
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 10px rgba(0, 240, 255, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
+    }
+}
+
+.logo, .bienvenida {
+    animation: neonPulse 3s infinite ease-in-out;
+}
 
 
 footer {
@@ -152,6 +170,27 @@ footer {
     font-family: "Space Mono";
     font-size: 32px;
     color: #FFF;
+}
+
+/* 1. Efecto "Levitar" y Neón para las tarjetas */
+.seccion {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza el cambio */
+}
+
+.seccion:hover {
+    transform: translateY(-10px); /* Sube 10 pixeles */
+    /* Sombra color Cyan (tu color temático) */
+    box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2); 
+    border: 1px solid var(--text-cyan); /* Borde brillante al pasar el mouse */
+}
+
+/* 2. Efecto para las imágenes de las tarjetas */
+.card-icon img {
+    transition: transform 0.5s ease;
+}
+
+.seccion:hover .card-icon img {
+    transform: rotate(15deg) scale(1.1); /* Gira y crece un poco */
 }
 
 /* DISEÑO MOBILE */

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style_p.css">
     <title>PixelAhui</title>
 </head>
@@ -12,7 +13,7 @@
         <button class="hamburger" aria-label="Abrir Menu">
             ☰
         </button>
-        <nav>
+        <nav data-aos="fade-up">
             <ul class="nav">
                 <li><a href="../index.html">Pixel Ahui</a></li>
                 <li><a href="#">Proyectos</a></li>
@@ -25,10 +26,10 @@
     </header>
     
     <main>
-        <div class="logo">
+        <div data-aos="fade-down" class="logo">
             <img src="../images/PixelAhui-Projects.png" alt="Img-PixelAhui-Projects" title="Proyectos">
         </div>
-        <div class="bienvenida">
+        <div data-aos="fade-down" class="bienvenida">
             <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
                 Reprehenderit laudantium culpa perspiciatis omnis, similique amet reiciendis et repudiandae ipsa illo? 
@@ -39,26 +40,33 @@
     </main>
 
     <div class="secciones">
-        <p class="subtitle">Proyectos En Proceso</p>
-        <div id="container-progress" class="seccion">
+        <p data-aos="fade-right" class="subtitle">Proyectos En Proceso</p>
+        <div data-aos="flip-up" id="container-progress" class="seccion">
             <p>Cargando proyectos en progreso...</p>
         </div>
-        <p class="subtitle">Proyectos Destacados</p>
-        <div id="container-prominent" class="seccion">
+        <p data-aos="fade-left" class="subtitle">Proyectos Destacados</p>
+        <div data-aos="flip-up" id="container-prominent" class="seccion">
             <p>Cargando proyectos destacados...</p>
         </div>
-        <p class="subtitle">Proyectos Terminados</p>
-        <div id="container-finished" class="seccion">
+        <p data-aos="fade-right" class="subtitle">Proyectos Terminados</p>
+        <div data-aos="flip-up" id="container-finished" class="seccion">
             <p>Cargando proyectos terminados...</p>
         </div>
     </div>
 
-    <footer>
+    <footer data-aos="fade-down">
         <p>Pixel Ahui & jokealex 2025</p>
     </footer>
 
     <script src="../js/menuresponsive.js"></script>
     <script src="../js/projects.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, 
+            once: true    
+        });
+    </script>
 
 </body>
 </html>
