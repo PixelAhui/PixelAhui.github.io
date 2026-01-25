@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/posts.json?v=' + new Date().getTime())
         .then(response => response.json())
         .then(data => {
-            const ciberData = data.filter(p => p.category === 'projects');
+            const ciberData = data.filter(p => p.category === 'cibersecurity');
 
-            const progress = ciberData.filter(p => p.subcategory === 'progress');
-            const prominent = ciberData.filter(p => p.subcategory === 'prominent');
-            const finished = ciberData.filter(p => p.subcategory === 'finished');
+            const progress = ciberData.filter(p => p.subcategory === 'projects');
+            const prominent = ciberData.filter(p => p.subcategory === 'writeups');
+            const finished = ciberData.filter(p => p.subcategory === 'thoughts');
 
             const renderCards = (items, containerId, emptyMsg) => {
                 const container = document.getElementById(containerId);

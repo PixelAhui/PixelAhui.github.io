@@ -141,8 +141,17 @@ span {
     font-family: "Pixelify Sans";
     color: #00F0FF;
     float: right;
-
+    text-decoration: none;
+    font-size: 24px;
 }
+
+.btn-saber-mas:hover{
+    text-decoration: underline;
+    font-size: 26px;
+}
+
+
+/* Animacion pulso neon */
 
 @keyframes neonPulse {
     0% {
@@ -172,25 +181,24 @@ footer {
     color: #FFF;
 }
 
-/* 1. Efecto "Levitar" y Neón para las tarjetas */
+/*Efecto Levitar y Neón para las tarjetas */
 .seccion {
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza el cambio */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .seccion:hover {
-    transform: translateY(-10px); /* Sube 10 pixeles */
-    /* Sombra color Cyan (tu color temático) */
-    box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2); 
-    border: 1px solid var(--text-cyan); /* Borde brillante al pasar el mouse */
+    transform: translateY(-10px);
+    box-shadow: 0 20px 20px rgba(0, 240, 255, 0.35); 
+    border: 1px solid var(--text-cyan);
 }
 
-/* 2. Efecto para las imágenes de las tarjetas */
+/*Efecto para las imágenes de las tarjetas */
 .card-icon img {
     transition: transform 0.5s ease;
 }
 
 .seccion:hover .card-icon img {
-    transform: rotate(15deg) scale(1.1); /* Gira y crece un poco */
+    transform: scale(1.15); 
 }
 
 /* DISEÑO MOBILE */
