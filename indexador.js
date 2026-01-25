@@ -26,6 +26,32 @@ const getFileDate = (filePath) => {
     return stats.mtime.toISOString().split('T')[0];
 };
 
+const generarSitemap = (posts) => {
+    const dominio = 'https://pixelahui.com';
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url><loc>${dominio}/</loc><changefreq>weekly</changefreq></url>
+    <url><loc>${dominio}/pages/projects.html</loc><changefreq>weekly</changefreq></url>
+    <url><loc>${dominio}/pages/cibersecurity.html</loc><changefreq>weekly</changefreq></url>
+    <url><loc>${dominio}/pages/gamedev.html</loc><changefreq>weekly</changefreq></url>
+`;
+
+    // Páginas Dinámicas (Tus artículos)
+    posts.forEach(post => {
+        // Asumiendo que usas article.html?id=...
+        xml += `    <url>
+        <loc>${dominio}/article.html?id=${post.id}</loc>
+        <lastmod>${post.date}</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>\n`;
+    });
+
+    xml += '</urlset>';
+    
+    fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), xml);
+    console.log("✅ Sitemap.xml generado correctamente.");
+};
+
 const generarIndice = () => {
     console.log("🚀 Iniciando indexado por Catálogo Maestro...");
     
@@ -78,6 +104,9 @@ const generarIndice = () => {
     });
 
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    generarSitemap(posts);
+
     fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
     console.log(`✅ Índice generado con ${posts.length} artículos.`);
 };

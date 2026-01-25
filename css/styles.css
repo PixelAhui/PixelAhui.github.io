@@ -176,6 +176,20 @@ footer {
     padding: 10px 14px;
     border-radius: 10px;
     cursor: pointer;
+    float: left;
+
+}
+
+.header-mobile {
+    display:none;
+    background-color: #1B1E2F;
+    border: none;
+    color: #FFF;
+    font: 32px;
+    padding: 10px 14px;
+    border-radius: 15px;
+    text-align: center;
+    font-family: "Space Mono";
 
 }
 
@@ -192,8 +206,13 @@ footer {
 
     .hamburger {
 
-        display: block;
+        display: inline-block;
 
+    }
+
+    .header-mobile {
+        display: inline-block;
+        width: 100%;
     }
 
     nav {
@@ -217,17 +236,41 @@ footer {
     }
 
     .nav {
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding-top: 60px;
+
+        padding: 0;
+        margin-top: 20px;
+        width: 100%;
+        margin: 0;
+        position:fixed;
     }
 
-    .nav a {
-
+    .nav li {
+        float: none;
         width: 100%;
-        padding: 16px 24px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: block;
+        margin: 0;
+    }
 
+    .nav li a {
+        display: block;
+        width: 100%;
+        height: auto;         
+        padding: 20px 25px;    
+        font-size: 18px;   
+        line-height: 1.5; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        box-sizing: border-box; 
+
+    }
+
+    .nav li a:hover {
+        background: #7D5BA6;
+        font-size: 18px;
+        padding-left: 35px; 
+        transition: all 0.3s ease;
     }
 
     main {
