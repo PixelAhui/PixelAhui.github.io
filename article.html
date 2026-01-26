@@ -5,41 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargando artículo... | PixelAhui</title>
     
-    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <link rel="stylesheet" href="css/style_a.css">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    
-    <style>
-        /* Estilos específicos para la lectura */
-        .article-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.8;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #fff; /* O tu color de fondo */
-            color: #333;
-        }
-        
-        /* Ajustes para imágenes que vienen de Obsidian */
-        .article-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-
-        /* Bloques de código */
-        pre {
-            border-radius: 8px;
-        }
-    </style>
 </head>
 <body>
 
-    <nav>
-        <a href="javascript:history.back()">← Volver al inicio</a>
-    </nav>
+    <div class="button-reverse">
+        <a class="button-back" href="javascript:history.back()">← Volver atrás</a>
+    </div>
 
     <main class="article-container" id="markdown-render">
         <p>Cargando contenido...</p>
@@ -49,60 +23,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
-    <script>
-        // Lógica del Visor
-        document.addEventListener('DOMContentLoaded', async () => {
-            // 1. Obtener el ID de la URL
-            const params = new URLSearchParams(window.location.search);
-            const articleId = params.get('id');
-            const container = document.getElementById('markdown-render');
-
-            if (!articleId) {
-                container.innerHTML = "<h1>Error: No se especificó ningún artículo.</h1>";
-                return;
-            }
-
-            try {
-                // 2. Buscar el archivo Markdown original
-                // Asumimos que están en la carpeta 'content'
-                const response = await fetch(`./content/${articleId}.md`);
-
-                if (!response.ok) {
-                    throw new Error("Artículo no encontrado (404)");
-                }
-
-                const markdownText = await response.text();
-
-                // 3. Configurar Marked para seguridad y estilos
-                marked.setOptions({
-                    breaks: true, // Enter en MD = Salto de línea en HTML
-                    gfm: true     // GitHub Flavored Markdown
-                });
-
-                // 4. Convertir e inyectar
-                // Nota: Si usas Frontmatter (YAML) al inicio, deberías limpiarlo aquí.
-                // Una forma simple de limpiar YAML básico es:
-                const cleanMarkdown = markdownText.replace(/^---[\s\S]+?---/, '');
-                
-                container.innerHTML = marked.parse(cleanMarkdown);
-                
-                // Actualizar título de la pestaña
-                // Usamos el primer H1 que encontremos o el ID
-                const titleMatch = cleanMarkdown.match(/^# (.+)$/m);
-                document.title = (titleMatch ? titleMatch[1] : articleId) + " | PixelAhui";
-
-                // 5. Activar el resaltado de sintaxis de Prism
-                Prism.highlightAll();
-
-            } catch (error) {
-                console.error(error);
-                container.innerHTML = `
-                    <h1>Error 404</h1>
-                    <p>Lo sentimos, no pudimos cargar el artículo "<em>${articleId}</em>".</p>
-                    <p>Verifica que el archivo exista en la carpeta /content.</p>
-                `;
-            }
-        });
-    </script>
+    <script src="js/articles.js"></script>
 </body>
 </html>
