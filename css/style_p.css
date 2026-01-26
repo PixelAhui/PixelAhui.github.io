@@ -213,6 +213,20 @@ footer {
     padding: 10px 14px;
     border-radius: 10px;
     cursor: pointer;
+    float: left;
+
+}
+
+.header-mobile {
+    display:none;
+    background-color: #1B1E2F;
+    border: none;
+    color: #FFF;
+    font: 32px;
+    padding: 10px 14px;
+    border-radius: 15px;
+    text-align: center;
+    font-family: "Space Mono";
 
 }
 
@@ -311,15 +325,15 @@ footer {
 
     }
 
-    .Bienvenue {
+    .bienvenida {
         padding: 24px;
         font-size: 24px;
     }
 
     .secciones {
 
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-direction: column;
         gap: 24px;
         padding-bottom: 60px;
 
