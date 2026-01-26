@@ -105,6 +105,7 @@ main {
     display: block;
     padding: 40px 20px 80px;
     margin: 20px 20px 80px;
+    border-radius: 20px;
 
 }
 
@@ -113,6 +114,7 @@ main {
     background: #7D5BA6;
     font-family: "Inter";
     color: #FFF;
+    border-radius: 20px;
 
 }
 
@@ -187,7 +189,7 @@ footer {
 }
 
 .seccion:hover {
-    transform: translateY(-10px);
+    transform: translateY(-20px);
     box-shadow: 0 20px 20px rgba(0, 240, 255, 0.35); 
     border: 1px solid var(--text-cyan);
 }

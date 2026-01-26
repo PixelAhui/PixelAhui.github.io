@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     return `
                     <article class="secciones">
-                        <div class="seccion">
+                        <div>
                             <h3>${post.title}</h3>
                             
                             <p>${descripcionFinal}</p>
