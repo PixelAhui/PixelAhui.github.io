@@ -6,8 +6,8 @@
     "subcategory": "writeups",
     "date": "2026-02-03",
     "fileName": "installKali.md",
-    "description": "Lectura sobre installKali",
-    "image": null
+    "description": "Aprende a instalar Kali Linux desde cero en una máquina virtual.",
+    "image": "kali-logo.png"
   },
   {
     "id": "projects/finished/terminado",
