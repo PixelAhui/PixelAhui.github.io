@@ -115,15 +115,15 @@ Algunas computadoras y laptops no tienen habilitada la virtualización en sus eq
 
 Esto abrirá el administrador de tareas de Windows que luce algo así.
 
-![Administrador de Tareas](../images/kali1.png)
+![Administrador de Tareas](/images/kali1.png)
 
 Al ver esto hay que dar clic en la sección que diga *Rendimiento* que es el icono con la gráfica, al dar clic veremos lo siguiente.
 
-![Rendimiento Windows](../images/kali2.png)
+![Rendimiento Windows](/images/kali2.png)
 
 A continuación daremos clic en CPU y observaremos que la parte de *Virtualización* diga **Habilitado** si no lo dice será necesario entrar a la BIOS.
 
-![CPU Virtualización](../images/kali3.png)
+![CPU Virtualización](/images/kali3.png)
 
 Activar la virtualización depende de la manufactura de cada computadora, por lo que debes saber si tu laptop cuenta con un procesador Intel o AMD, para poder activar la virtualización desde el BIOS.
 ## Proceso de instalación
@@ -136,20 +136,20 @@ En este caso en concreto instalaremos VirtualBox para Windows 11 para esto es ta
 
 Al dar clic acceder a la página de VirtualBox, que es la siguiente.
 
-![VirtualBox website](../images/kali4.png)
+![VirtualBox website](/images/kali4.png)
 
 A continuación para la descarga daremos clic en **Download**
-![VirtualBox Download](../images/kali5.png)
+![VirtualBox Download](/images/kali5.png)
 
 A continuación centraremos nuestra atención en la sección que dice **VirtualBox Platform Packages**, en esta sección dare clic en el Sistema Operativo que tengamos instalado de forma nativa en nuestra computadora, y como mencionamos en este caso será Windows 11, por lo que daremos clic en **Window hosts**
 
 A continuación se descargará un archivo .exe que es el instalador de VirtualBox para Windows.
 
-![VirtualBox File](../images/kali6.png)
+![VirtualBox File](/images/kali6.png)
 
 Daremos clic en **Abrir archivo** y seguiremos las instrucciones del instalador, como cualquier otro programa, al terminar de instalarse tendremos la siguiente aplicación.
 
-![Abrir Archivo](../images/kali8.png)
+![Abrir Archivo](/images/kali8.png)
 
 Ahora ya tenemos instalado VirtualBox en nuestra computadora. Ahora continuemos con la instalación de Kali Linux.
 
@@ -174,49 +174,49 @@ A diferencia de Parrot que es más flexible al poder ser instalado como VM o Liv
 
 Entremos al enlace de Kali Linux empecemos con la instalación de esta distribución.
 
-![Administrador de Tareas](../images/kali9.png)
+![Administrador de Tareas](/images/kali9.png)
 
 Damos clic en Download, al dar clic aparecerá la siguiente pantalla.
 
-![Administrador de Tareas](../images/kali10.png)
+![Administrador de Tareas](/images/kali10.png)
 
 A continuación demos clic en Virtual Machines, y aparecerá esta otra pantalla
 
-![Administrador de Tareas](../images/kali11.png)
+![Administrador de Tareas](/images/kali11.png)
 
 Y damos clic en VirtualBox que es nuestro caso, las otras opciones son plataformas de virtualización también, pero en esta ocasión solo nos enfocaremos en VirtualBox.
 
 Al terminar de descargarse veremos que es un archivo comprimido .7z
 
-![Administrador de Tareas](../images/kali12.png)
+![Administrador de Tareas](/images/kali12.png)
 
 Lo que haremos a continuación será descomprimir este archivo. Al descomprimir y explorar en la carpeta tendremos los siguientes dos archivos.
 
-![Administrador de Tareas](../images/kali13.png)
+![Administrador de Tareas](/images/kali13.png)
 
 A continuación nos iremos a VirtualBox y daremos clic en **Open**.
 
-![Administrador de Tareas](../images/kali14.png)
+![Administrador de Tareas](/images/kali14.png)
 
 Y buscaremos la carpeta de descargas donde se encuentra nuestra máquina de Kali
 
-![Administrador de Tareas](../images/kali16.png)
+![Administrador de Tareas](/images/kali16.png)
 
 Y la seleccionaremos y ya tendremos la máquina.
 
-![Administrador de Tareas](../images/kali17.png)
+![Administrador de Tareas](/images/kali17.png)
 
 Al dar clic en iniciar aparecerá esto
 
-![Administrador de Tareas](../images/kali18.png)
+![Administrador de Tareas](/images/kali18.png)
 
 Debemos esperar y a continuación se mostrará la pantalla de inicio de sesión de Kali Linux
 
-![Administrador de Tareas](../images/kali19.png)
+![Administrador de Tareas](/images/kali19.png)
 
 Por defecto las credenciales de inicio son: **kali**, tanto para user como para password.
 
-![Administrador de Tareas](../images/kali20.png)
+![Administrador de Tareas](/images/kali20.png)
 
 Por defecto la pantalla se puede ver o muy pequeña o muy grande, para cambiar esto podemos ir a la sección de **Ver** de arriba a la izquierda y cambiar hasta que se ajusta a como lo queremos.
 

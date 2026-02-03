@@ -31,26 +31,6 @@ try {
     // Nota: Si usas Frontmatter (YAML) al inicio, deberías limpiarlo aquí.
     // Una forma simple de limpiar YAML básico es:
     const cleanMarkdown = markdownText.replace(/^---[\s\S]+?---/, '');
-    
-    // --- MAGIA NUEVA: Corrector de Rutas de Imágenes ---
-    
-    // 1. Calculamos dónde vive este artículo (ej: "content/cibersecurity/writeups")
-    // Tomamos el ID y le quitamos el nombre del archivo final
-    const articleFolder = articleId.substring(0, articleId.lastIndexOf('/'));
-    const basePath = `content/${articleFolder}/`; 
-
-    // 2. Corregimos los enlaces estándar de Markdown [text](../ruta)
-    // Buscamos cualquier enlace que empiece con "../" y le pegamos la ruta completa antes
-    let fixedMarkdown = cleanMarkdown.replace(/\]\(\.\.\//g, `](${basePath}../`);
-
-    // 3. Corregimos los enlaces estilo Obsidian ![[imagen.png]] (Por si acaso)
-    // Los convertimos a Markdown estándar apuntando a la carpeta de imágenes relativa
-    fixedMarkdown = fixedMarkdown.replace(/!\[\[(.*?)\]\]/g, (match, fileName) => {
-        return `![${fileName}](${basePath}../images/${fileName})`; 
-    });
-
-    // Renderizamos el markdown YA CORREGIDO
-    container.innerHTML = marked.parse(fixedMarkdown);
 
     container.innerHTML = marked.parse(cleanMarkdown);
     
