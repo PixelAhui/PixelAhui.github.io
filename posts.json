@@ -1,13 +1,13 @@
 [
   {
-    "id": "cibersecurity/welcome",
-    "title": "Welcome",
+    "id": "cibersecurity/writeups/installKaliLiD",
+    "title": "InstallKaliLiD",
     "category": "cibersecurity",
-    "subcategory": "general",
-    "date": "2026-02-03",
-    "fileName": "welcome.md",
-    "description": "Lectura sobre welcome",
-    "image": null
+    "subcategory": "writeups",
+    "date": "2026-02-04",
+    "fileName": "installKaliLiD.md",
+    "description": "Aprende a instalar Kali Linux desde cero en Debian 13",
+    "image": "KalixLinux.png"
   },
   {
     "id": "cibersecurity/writeups/installKali",
@@ -16,7 +16,7 @@
     "subcategory": "writeups",
     "date": "2026-02-03",
     "fileName": "installKali.md",
-    "description": "Aprende a instalar Kali Linux desde cero en una máquina virtual.",
+    "description": "Aprende a instalar Kali Linux desde cero en Windows.",
     "image": "kali-logo.png"
   },
   {
@@ -24,7 +24,7 @@
     "title": "Terminado",
     "category": "projects",
     "subcategory": "finished",
-    "date": "2026-02-03",
+    "date": "2026-01-22",
     "fileName": "terminado.md",
     "description": "Lectura sobre terminado",
     "image": null
@@ -34,7 +34,7 @@
     "title": "Progreso",
     "category": "projects",
     "subcategory": "progress",
-    "date": "2026-02-03",
+    "date": "2026-01-20",
     "fileName": "progreso.md",
     "description": "Lectura sobre progreso",
     "image": null
@@ -44,9 +44,19 @@
     "title": "Destacado",
     "category": "projects",
     "subcategory": "prominent",
-    "date": "2026-02-03",
+    "date": "2026-01-20",
     "fileName": "destacado.md",
     "description": "Lectura sobre destacado",
+    "image": null
+  },
+  {
+    "id": "cibersecurity/welcome",
+    "title": "Welcome",
+    "category": "cibersecurity",
+    "subcategory": "general",
+    "date": "2026-01-19",
+    "fileName": "welcome.md",
+    "description": "Lectura sobre welcome",
     "image": null
   }
 ]
