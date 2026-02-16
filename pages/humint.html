@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso Restringido - Intranet Global</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        .logo { color: #2c3e50; font-size: 24px; font-weight: bold; margin-bottom: 1.5rem; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #2980b9; }
+        .msg { color: #e74c3c; font-size: 14px; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="logo">🔐 Portal de Empleados</div>
+    <p style="font-size: 13px; color: #666;">Ingrese sus credenciales corporativas</p>
+    <input type="text" id="user" placeholder="Usuario (Alias)">
+    <input type="password" id="pass" placeholder="Contraseña">
+    <button onclick="validar()">Iniciar Sesión</button>
+    <div id="error-msg" class="msg">Credenciales incorrectas. Intente de nuevo.</div>
+</div>
+
+<script src="../js/humint.js"></script>
+
+</body>
+</html>
